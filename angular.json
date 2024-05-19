@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "ng-b",
+      "prefix": "ngb",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
