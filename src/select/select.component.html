@@ -1,0 +1,103 @@
+<div
+  class="ngb-select-wrapper dropdown"
+  [ngClass]="{
+    'is-up': isUp,
+    'is-active': isOpen,
+    'is-hoverable': isHoverable
+  }">
+  <div class="dropdown-trigger">
+    <button
+      class="ngb-select-button button"
+      (click)="handleNonInputClicked($event)"
+      (keydown)="focusFirstItemOnArrowDown($event)"
+      tabindex="-1">
+      <span (mousedown)="preventDefault($event)">
+        @if (!selectedItem) {
+          <input
+          #filterInput
+          class="ngb-select-input input"
+          [placeholder]="placeholder"
+          [(ngModel)]="filterTerm"
+          (ngModelChange)="filterItems()"
+          (focus)="openDropdown()"
+          (blur)="closeDropdownOnInputBlur($event)"
+          (keydown)="closeDropdownOnEsc($event)">
+        }
+        @else {
+          <input
+            class="ngb-select-value input"
+            [value]="selectedItem"
+            (focus)="openDropdown()"
+            (blur)="closeDropdownOnInputBlur($event)"
+            (keydown)="deselectItemOnEsc($event)"
+            readonly>
+        }
+        <span class="ngb-select-icons">
+          @if (selectedItem) {
+            <span
+              tabindex="0"
+              (click)="clearSelection()"
+              (keydown)="deselectItemOnEnter($event)"
+              class="icon is-small">
+              <i class="fa-solid fa-xmark"></i>
+            </span>
+          }
+          <span class="icon is-small">
+            <i class="fas fa-angle-down"></i>
+          </span>
+        </span>
+      </span>
+    </button>
+  </div>
+  <div
+    class="dropdown-menu"
+    role="menu">
+    @if (displayedItems.length) {
+      <div class="ngb-dropdown-content dropdown-content">
+        @for (item of displayedItems; track item; let index = $index) {
+          @if (index !== 0) {
+            <hr class="dropdown-divider" />
+          }
+          <a
+            #itemAnchor
+            tabindex="0" 
+            class="ngb-dropdown-item dropdown-item"
+            [ngClass]="{'is-active': item === selectedItem}"
+            (keydown)="navigateListOnArrow($event)"
+            (keyup)="closeDropdownOnEsc($event)"
+            (keypress)="selectItemOnEnter($event, item)"
+            (click)="onItemSelected(item)">
+          {{item}}
+          </a>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+<div class="dropdown is-active">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+      <span>Content</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+    <div class="dropdown-content">
+      <div class="dropdown-item">
+        <p>
+          You can insert <strong>any type of content</strong> within the
+          dropdown menu.
+        </p>
+      </div>
+      <hr class="dropdown-divider" />
+      <div class="dropdown-item">
+        <p>You simply need to use a <code>&lt;div&gt;</code> instead.</p>
+      </div>
+      <hr class="dropdown-divider" />
+      <a href="#" class="dropdown-item"> This is a link </a>
+    </div>
+  </div>
+</div>

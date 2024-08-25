@@ -1,0 +1,41 @@
+.ngb-select-input {
+  border: none;
+  background: none;
+  cursor: pointer;
+  &:focus {
+    cursor:text;
+  }
+  &::placeholder {
+    color: hsl(var(--bulma-button-h), var(--bulma-button-s), var(--bulma-button-color-l));
+  }
+  &:focus::placeholder {
+    color: var(--bulma-input-placeholder-color);
+  }
+}
+
+.ngb-select-button {
+  padding: 0;
+}
+
+.ngb-select-icons {
+  position: absolute;
+  top: calc(var(--bulma-button-padding-vertical) - var(--bulma-button-border-width));
+  right: calc(var(--bulma-button-padding-horizontal) - var(--bulma-button-border-width));;
+}
+
+.fa-xmark {
+  margin-right: calc(var(--bulma-button-padding-horizontal) - var(--bulma-button-border-width) - 2.5rem);
+  color: hsla(var(--bulma-text-h), var(--bulma-text-s), var(--bulma-text-strong-l), 0.3);
+  &:hover {
+    color: hsl(var(--bulma-button-h), var(--bulma-button-s), var(--bulma-button-color-l));
+  }
+}
+
+.ngb-select-input, .ngb-select-value {
+  width: var(--ngb-select-width);
+}
+
+.ngb-dropdown-content {
+  max-height: calc(2.5rem + 198px );
+  overflow-y: scroll;
+}

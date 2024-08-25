@@ -1,27 +1,25 @@
 # NgBulma
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+This project is currently v0.1.0 and is under construction. More features and components will come with time.
 
-## Development server
+Please let me know at sophia@sophiamckell.com if you would like to help contribute or have technical questions for now, as this is still a new passion project.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+##### Notes
+Bulma is compatible with all icon font libraries, though this library utilizes [Font Awesome 5](https://fontawesome.com/v5/search) in the same manner that the documentation does.
 
-## Code scaffolding
+## Components
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+These components are all standalone, and can be imported into other components in the imports array should they be used in that component's template.
 
-## Build
+#### Select `<ngb-select>`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+A dropdown with a filtering input embedded in the button
+`import {NgbSelectComponent} from 'ng-bulma/select';`
 
-## Running unit tests
+|Attribute    |Description |Default |
+|-------------|------------|--------|
+|`Input` [isUp] |Determines if the combobox opens upward|`false`|
+|`Input` [placeholder] |gives placeholder text to the input | `''` |
+|`Input` [items] |An array of strings to use as the options |`[]`|
+|`Input` [isHoverable] | a boolean to determine if dropdownelements are highlighted on hover | `true` |
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
