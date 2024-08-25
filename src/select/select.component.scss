@@ -31,10 +31,6 @@
   }
 }
 
-.ngb-select-input, .ngb-select-value {
-  width: var(--ngb-select-width);
-}
-
 .ngb-dropdown-content {
   max-height: calc(2.5rem + 198px );
   overflow-y: scroll;

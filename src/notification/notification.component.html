@@ -1,0 +1,46 @@
+<div
+	class="notification"
+  @openCloseTopBottom
+  *ngIf="isOpen && !isCorner()"
+	[ngClass]="{
+    'is-link': type === 'link',
+    'is-primary': type === 'primary',
+    'is-info': type === 'info',
+    'is-success': type === 'success',
+    'is-warning': type === 'warning',
+    'is-danger': type === 'danger',
+		'ngb-notification-top': position === 'top',
+		'ngb-notification-bottom': position === 'bottom'
+	}"
+>
+	@if (isClearable) {
+		<button class="delete" (click)="handleClose()" (keypress)="closeOnEsc($event)"> </button>
+	}
+  <p>
+    {{ text }}
+  </p>
+</div>
+<div
+	class="notification"
+  @openCloseCorner
+  *ngIf="isOpen && isCorner()"
+	[ngClass]="{
+    'is-link': type === 'link',
+    'is-primary': type === 'primary',
+    'is-info': type === 'info',
+    'is-success': type === 'success',
+    'is-warning': type === 'warning',
+    'is-danger': type === 'danger',
+		'ngb-notification-top-right': position === 'top-right',
+		'ngb-notification-top-left': position === 'top-left',
+		'ngb-notification-bottom-right': position === 'bottom-right',
+		'ngb-notification-bottom-left': position === 'bottom-left',
+	}"
+>
+	@if (isClearable) {
+		<button class="delete" (click)="handleClose()" (keypress)="closeOnEsc($event)"> </button>
+	}
+  <p>
+    {{ text }}
+  </p>
+</div>

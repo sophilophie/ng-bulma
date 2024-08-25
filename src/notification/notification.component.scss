@@ -1,0 +1,50 @@
+div.notification {
+	position: absolute;
+	z-index: 10000;
+	max-width: 11em;
+	@media screen and (min-width: 241px) {
+		max-width: 18em;
+	}
+	@media screen and (min-width: 481px) {
+		max-width: 25em;
+	}
+}
+
+.delete {
+  position: relative;
+  float: right;
+  top: 0;
+  inset-inline-end: 0;
+}
+
+.ngb-notification-top {
+	top: 1em;
+	left: 50%;
+  transform: translateX(-50%);
+}
+
+.ngb-notification-bottom {
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ngb-notification-top-left {
+	top: 1em;
+	left: 1em;
+}
+
+.ngb-notification-top-right {
+	top: 1em;
+	right: 1em;
+}
+
+.ngb-notification-bottom-left {
+	bottom: 1em;
+	left: 1em;
+}
+
+.ngb-notification-bottom-right {
+	bottom: 1em;
+	right: 1em;
+}

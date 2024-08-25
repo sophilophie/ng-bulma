@@ -1,19 +1,47 @@
-import {CommonModule} from '@angular/common';
-import {Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {
+	Component,
+	ElementRef,
+	EventEmitter,
+	forwardRef,
+	Input,
+	OnInit,
+	Output,
+	QueryList,
+	ViewChild,
+	ViewChildren
+} from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
 	selector: 'ngb-select',
 	standalone: true,
 	imports: [CommonModule, FormsModule],
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => NgbSelectComponent),
+			multi: true
+		}
+	],
 	templateUrl: './select.component.html',
 	styleUrl: './select.component.scss'
 })
-export class NgbSelectComponent implements OnInit {
+export class NgbSelectComponent implements ControlValueAccessor, OnInit {
 	@Input() isUp: boolean = false;
 	@Input() placeholder: string = '';
 	@Input() items: string[] = [];
-	@Input() isHoverable: boolean = true;
+	@Input() ngModel: string = '';
+	@Output() ngModelChange: EventEmitter<string> = new EventEmitter();
+
+	get selectedItem() {
+		return this.ngModel;
+	}
+
+	set selectedItem(value) {
+		this.ngModel = value;
+		this.propagateChange(this.ngModel);
+	}
 
 	@ViewChild('filterInput') filterInput!: ElementRef;
 	@ViewChildren('itemAnchor') itemAnchors!: QueryList<ElementRef>;
@@ -22,11 +50,23 @@ export class NgbSelectComponent implements OnInit {
 	isOpen: boolean = false;
 	hasFocus: boolean = false;
 	displayedItems: string[] = [];
-	selectedItem: string = '';
+	propagateChange: (_: string) => void = (_: string) => {
+		_;
+	};
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.displayedItems = this.items;
 	}
+
+	writeValue(value: string): void {
+		this.selectedItem = value;
+	}
+
+	registerOnChange(fn: (_: string) => void): void {
+		this.propagateChange = fn;
+	}
+
+	registerOnTouched(): void {}
 
 	filterItems() {
 		this.displayedItems = this.items.filter((item) => {
